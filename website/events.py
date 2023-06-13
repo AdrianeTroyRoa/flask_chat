@@ -29,6 +29,19 @@ def check_color(dictionary, username):
 
 @socketio.on("new_message")
 def handle_new_message(message):
+    if(message == ""):
+        return 
+
+    message_len = len(message)
+    iteration = 1
+    for char in message:
+        if(char != " "):
+            break
+        elif(message_len == iteration):
+            return
+        else:
+            iteration+=1
+
     print(f"New message: {message}")
     username = None
     for user in users:
