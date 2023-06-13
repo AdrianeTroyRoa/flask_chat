@@ -57,12 +57,14 @@
             ul.style.maxHeight = "80%";
             li.style.fontFamily = "cursive";
             li.style.fontSize = "x-large";
+            let one_message = document.createElement("span");
             if(data["username"] == "{{log_user}}"){
                 li.style.float = "right";
                 li.style.backgroundColor = "#d9d9d9";
                 li.style.borderRadius = "18px 18px 0 18px";
                 let the_user = document.getElementById("username");
                 the_user.style.color = data["color"];
+                one_message.style.color = "#222222";
             } else{
                 li.style.float = "left";
                 li.style.backgroundColor = "#5d5d5d";
@@ -71,9 +73,8 @@
                 one_user.style.color = data["color"];
                 one_user.textContent = "<"+data["username"]+">"+": ";
                 li.appendChild(one_user);
+                one_message.style.color = "#eeeeee";
             }
-            let one_message = document.createElement("span");
-            one_message.style.color = "#222222";
             one_message.textContent = data["message"];
             li.appendChild(one_message);
             ul.appendChild(li);
