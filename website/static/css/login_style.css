@@ -1,0 +1,103 @@
+input.login {
+    text-align: center;
+    border: 0px transparent;
+    padding: 15px;
+    padding-left: 70px;
+    padding-right: 70px;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    font-size: 19pt;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+}
+:-moz-placeholder {
+  text-align: center;
+}
+button.signin {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 80px;
+    border: 0px transparent;
+    border-radius: 30px;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #65af45;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 21pt;
+}
+button.signin:hover{
+    background-color: green;
+}
+button.signup {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 80px;
+    border: 0px transparent;
+    border-radius: 30px;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #5e17eb;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 21pt;
+}
+button.signup:hover{
+    background-color: purple;
+}
+div.loginform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: #827666;
+    border: 0px transparent;
+    border-radius: 30px;
+    padding: 50px;
+    margin: auto;
+    margin-top: 300px;
+    width: 40%;
+}
+h1.title{
+    font-family: 'Arial';
+    color: #ffffff;
+    font-size: 30pt;
+    font-weight: 100;
+}
+a.NewUser{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 23pt;
+    font-family: Arial;
+    font-weight: 100;
+}
+a.NewUser:hover {
+    text-decoration: underline;
+}
+div.error{
+    color: #333333;
+    background-color: rgba(234,0,0,0.3);
+    padding: 10px;
+    margin-left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+div.success{
+    color: #333333;
+    background-color: rgba(0,234,0,0.3);
+    padding: 10px;
+    margin-left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.prompt{
+    position: fixed;
+    right: 0.3%;
+    background-color: transparent;
+}

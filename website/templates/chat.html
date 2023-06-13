@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <title>FlaskChat</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+        <div class="head">
+            <h1>One Network Chat</h1>
+            <a href="/logout">LogOut</a>
+            <span class="userid" id="user">USER: <span id="username">{{user.id}}</span></span>
+        </div>
+        <div class="message_container">
+            <div class="messages" id="container">
+                <ul style="list-style-type:none; padding: 0;" id="chat-msg"></ul>
+            </div>
+        </div>
+        <div class="input-bar">
+            <input size="50" type="text" id="messageInput" placeholder="Aa" autofocus>
+        </div>
+
+    <script>
+
+        const socket = io({autoConnect : false});
+
+        let username = "{{ log_user }}"
+        let messageContainer = document.getElementById("chat-msg");
+
+        socket.connect()
+
+        socket.on("connect", () => {
+            let p = document.createElement("p")
+            socket.emit("user_join", username)
+        })
+
+        let messageInput = document.getElementById("messageInput")
+        messageInput.addEventListener("keyup", (e) => {
+            if(e.key == "Enter"){
+                let message = messageInput.value
+                socket.emit("new_message", message);
+                messageInput.value = ""
+            }
+        })
+
+        socket.on('chat', (data) => {
+            let ul = document.getElementById("chat-msg");
+            let li = document.createElement("li");
+            let container = document.getElementById("container");
+            ul.style.maxHeight = "80%";
+            li.style.fontFamily = "cursive";
+            li.style.fontSize = "x-large";
+            if(data["username"] == "{{log_user}}"){
+                li.style.float = "right";
+                li.style.backgroundColor = "#d9d9d9";
+                li.style.borderRadius = "18px 18px 0 18px";
+                let the_user = document.getElementById("username");
+                the_user.style.color = data["color"];
+            } else{
+                li.style.float = "left";
+                li.style.backgroundColor = "#5d5d5d";
+                li.style.borderRadius = "18px 18px 18px 0";
+                let one_user = document.createElement("span");
+                one_user.style.color = data["color"];
+                one_user.textContent = "<"+data["username"]+">"+": ";
+                li.appendChild(one_user);
+            }
+            let one_message = document.createElement("span");
+            one_message.style.color = "#222222";
+            one_message.textContent = data["message"];
+            li.appendChild(one_message);
+            ul.appendChild(li);
+            container.scrollTop = container.scrollHeight;
+        })
+    </script>
+  </body>
+</html>

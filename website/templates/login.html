@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login_style.css') }}" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+                <div class="error" id="prompt">
+                    {{ message }}
+                    <button class="prompt" onclick="disappear()">X</button>
+                </div>
+            {% elif category == 'success' %}
+                <div class="success" id="prompt">
+                    {{ message }}
+                    <button class="prompt" onclick="disappear()">X</button>
+                </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <script>
+            function disappear(){
+                const el=document.getElementById("prompt");
+                el.style.display = "none";
+            }
+        </script>
+    <form method="POST">
+        <div class="loginform">
+            <h1 class="title">LOGIN<h1>
+                    <input type="text" class="login" placeholder="username" name="username" id="username" value="{{username}}" required>
+            <br>
+            <input type="password" class ="login" placeholder="password" name="psw" required>
+            <br>
+            <button class="signin" type="submit">SIGN IN</button>
+            <br>
+            <a href="signup" class="NewUser">New User?</a>
+        </div>
+    </form>
+    </body>
+</html>
