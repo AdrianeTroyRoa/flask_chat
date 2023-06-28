@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from .events import socketio
 
 db = SQLAlchemy()
 
@@ -30,6 +29,5 @@ def create_app():
     def load_user(id):
         return User.query.get(str(id))
 
-    socketio.init_app(app)
 
     return app
