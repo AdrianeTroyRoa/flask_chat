@@ -10,5 +10,5 @@ class User(db.Model, UserMixin):
 
 class Message(db.Model):
     sender_id = db.Column(db.String(20), db.ForeignKey('user.id'), primary_key=True) 
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    date = db.Column(db.DateTime(timezone=True), default=func.now(), primary_key=True)
     content_text = db.Column(db.String(10000))

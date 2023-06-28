@@ -16,7 +16,7 @@
         <div class="head">
             <h1>One Network Chat</h1>
             <a href="/logout">LogOut</a>
-            <span class="userid" id="user">USER: <span id="username">{{user.id}}</span></span>
+            <span class="userid" id="user">USER: {{user.id}}</span>
         </div>
         <div class="message_container">
             <div class="messages" id="container">
@@ -52,26 +52,27 @@
         socket.on('chat', (data) => {
             let ul = document.getElementById("chat-msg");
             let li = document.createElement("li");
+            let br = document.createElement("br");
             let container = document.getElementById("container");
             ul.style.maxHeight = "80%";
             li.style.fontFamily = "cursive";
-            li.style.fontSize = "x-large";
             let one_message = document.createElement("span");
+            one_message.style.fontSize = "x-large";
             if(data["username"] == "{{log_user}}"){
                 li.style.float = "right";
                 li.style.backgroundColor = "#d9d9d9";
                 li.style.borderRadius = "18px 18px 0 18px";
-                let the_user = document.getElementById("username");
-                the_user.style.color = data["color"];
                 one_message.style.color = "#222222";
             } else{
                 li.style.float = "left";
                 li.style.backgroundColor = "#5d5d5d";
                 li.style.borderRadius = "18px 18px 18px 0";
                 let one_user = document.createElement("span");
-                one_user.style.color = data["color"];
-                one_user.textContent = "<"+data["username"]+">"+": ";
+                one_user.style.fontSize = "small";
+                one_user.style.color = "#90EE90";
+                one_user.textContent = data["username"];
                 li.appendChild(one_user);
+                li.appendChild(br);
                 one_message.style.color = "#eeeeee";
             }
             one_message.textContent = data["message"];
