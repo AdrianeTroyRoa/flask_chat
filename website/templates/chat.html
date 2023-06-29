@@ -14,9 +14,16 @@
   </head>
   <body>
         <div class="head">
-            <h1>One Network Chat</h1>
+            <h1>Bangan Chat</h1>
             <a href="/logout">LogOut</a>
             <span class="userid" id="user">USER: {{user.id}}</span>
+        </div>
+        <div class="online_users">
+            <h2>Active Users</h2>
+            <ul style="list-style-type:none; padding: 0;" id="user_list">
+                <li>User 1</li>
+                <li>User 2</li>
+            </ul>
         </div>
         <div class="message_container">
             <div class="messages" id="container">
@@ -61,12 +68,12 @@
             if(data["username"] == "{{log_user}}"){
                 li.style.float = "right";
                 li.style.backgroundColor = "#d9d9d9";
-                li.style.borderRadius = "18px 18px 0 18px";
+                li.style.borderRadius = "10px 10px 0 10px";
                 one_message.style.color = "#222222";
             } else{
                 li.style.float = "left";
                 li.style.backgroundColor = "#5d5d5d";
-                li.style.borderRadius = "18px 18px 18px 0";
+                li.style.borderRadius = "10px 10px 10px 0";
                 let one_user = document.createElement("span");
                 one_user.style.fontSize = "small";
                 one_user.style.color = "#90EE90";

@@ -37,10 +37,10 @@ span.userid{
 }
 div.message_container {
     position:   fixed;
+    top:        9.8%;
     left:       30%;
     bottom:     10%;
     background-color: #403637;
-    height: 80%;
     width:  70%;
     padding-top: 3px;
 }
@@ -74,7 +74,7 @@ div.input-bar{
     padding: 15px;
     font-size: 16pt;
 }
-li{
+#chat-msg li{
     display: inline-block;
     clear: both;
     border: 1px solid black;
@@ -85,4 +85,19 @@ li{
     padding: 10px;
     word-wrap: break-word;
     max-width: 65%;
+}
+.online_users{
+    position:   fixed;
+    top:        9.8%;
+    right:      70.3%;
+    bottom:     0%;
+    background-color: #a6a6a6;
+    padding-left: 30px;
+    width: 28.3%;
+}
+
+.online_users h2{
+    font-family: "Arial";
+    font-size: 30pt;
+    font-weight: 700;
 }
