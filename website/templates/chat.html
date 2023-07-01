@@ -21,8 +21,6 @@
         <div class="online_users">
             <h2>Active Users</h2>
             <ul style="list-style-type:none; padding: 0;" id="user_list">
-                <li>User 1</li>
-                <li>User 2</li>
             </ul>
         </div>
         <div class="message_container">
@@ -38,7 +36,7 @@
 
         const socket = io({autoConnect : false});
 
-        let username = "{{ log_user }}"
+        let username = "{{ user.id }}"
 
         socket.connect()
 
@@ -65,7 +63,7 @@
             li.style.fontFamily = "cursive";
             let one_message = document.createElement("span");
             one_message.style.fontSize = "x-large";
-            if(data["username"] == "{{log_user}}"){
+            if(data["username"] == "{{user.id}}"){
                 li.style.float = "right";
                 li.style.backgroundColor = "#d9d9d9";
                 li.style.borderRadius = "10px 10px 0 10px";

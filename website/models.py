@@ -12,3 +12,8 @@ class Message(db.Model):
     sender_id = db.Column(db.String(20), db.ForeignKey('user.id'), primary_key=True) 
     date = db.Column(db.DateTime(timezone=True), default=func.now(), primary_key=True)
     content_text = db.Column(db.String(10000))
+
+class LoggedIn(db.Model):
+    active_id = db.Column(db.String(20), db.ForeignKey('user.id'), primary_key=True)
+    date_in = db.Column(db.DateTime(timezone=True), default=func.now(), primary_key=True)
+    date = db.Column(db.DateTime(timezone=True), default=None, primary_key=True)

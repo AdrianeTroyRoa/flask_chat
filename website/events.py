@@ -4,7 +4,7 @@ from flask_socketio import SocketIO
 import random
 
 from . import db
-from .models import Message
+from .models import Message, LoggedIn
 
 import time 
 
@@ -19,8 +19,20 @@ user_colors = {}
 def handle_connect():
     print("Client connected!")
 
+def list_active():
+
+    active_users = LoggedIn.query.order_by(LoggedIn.date_in.desc()).all()
+
 @socketio.on("user_join")
 def handle_user_join(username):
+    #datetime = time.strftime('%Y-%m-%d %H:%M:%S')
+    #new_session = LoggedIn(active_id=username, date_in=datetime)
+
+    #db.session.add(new_session)
+    #db.session.commit()
+    #
+    #list_active()
+
     messages = Message.query.order_by(Message.date).all()
 
     iter = 0;
