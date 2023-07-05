@@ -1,12 +1,9 @@
 from flask import request
-from flask_socketio import emit
-from flask_socketio import SocketIO
-import random
+from flask_socketio import emit, SocketIO
+import random, time
 
 from . import db
 from .models import Message, LoggedIn
-
-import time 
 
 r = lambda: random.randint(0,255)
 socketio = SocketIO()
@@ -21,17 +18,29 @@ def handle_connect():
 
 def list_active():
 
-    active_users = LoggedIn.query.order_by(LoggedIn.date_in.desc()).all()
+    active_users = LoggedIn.query.filter(LoggedIn.date_out.is_(None)).order_by(LoggedIn.date_in.desc()).all()
+    
+    iter = 0;
+    list_of_active = []
+    while(iter<len(active_users)):
+        list_of_active.append(active_users[iter].active_id)
+        iter+=1
+
+    emit("actives", list_of_active, broadcast=True)
+    print("active user:", len(list_of_active))
 
 @socketio.on("user_join")
 def handle_user_join(username):
-    #datetime = time.strftime('%Y-%m-%d %H:%M:%S')
-    #new_session = LoggedIn(active_id=username, date_in=datetime)
+    isActive = LoggedIn.query.filter(LoggedIn.active_id==username).filter(LoggedIn.date_out.is_(None)).first()
 
-    #db.session.add(new_session)
-    #db.session.commit()
-    #
-    #list_active()
+    if not isActive:
+        datetime = time.strftime('%Y-%m-%d %H:%M:%S')
+        new_session = LoggedIn(active_id=username, date_in=datetime)
+
+        db.session.add(new_session)
+        db.session.commit()
+    
+    list_active()
 
     messages = Message.query.order_by(Message.date).all()
 
@@ -44,6 +53,7 @@ def handle_user_join(username):
 
     print(f"User {username} joined!")
     users[username] = request.sid
+    print("we reached moon!")
     
 
 def check_color(dictionary, username):
@@ -80,4 +90,3 @@ def handle_new_message(message):
 
     db.session.add(new_message)
     db.session.commit()
-   

@@ -15,13 +15,12 @@
   <body>
         <div class="head">
             <h1>Bangan Chat</h1>
-            <a href="/logout">LogOut</a>
+            <a href="{{ url_for('auth.logout', username=user.id, **request.args) }}">LogOut</a>
             <span class="userid" id="user">USER: {{user.id}}</span>
         </div>
         <div class="online_users">
             <h2>Active Users</h2>
-            <ul style="list-style-type:none; padding: 0;" id="user_list">
-            </ul>
+            <ul style="list-style-type:none; padding: 0;" id="user_list"></ul>
         </div>
         <div class="message_container">
             <div class="messages" id="container">
@@ -52,6 +51,24 @@
                 socket.emit("new_message", message);
                 messageInput.value = ""
             }
+        })
+
+        socket.on('actives', (the_list) => {
+            let ul = document.getElementById("user_list")
+            let li = document.createElement("li")
+            let content = document.createElement("span")
+
+            ul.textContent = '';
+
+            for (let active_user in the_list) {
+                content.textContent = the_list[active_user]
+                li.appendChild(content)
+                ul.appendChild(li)
+
+                li = document.createElement("li")
+                content = document.createElement("span")
+            }
+
         })
 
         socket.on('chat', (data) => {

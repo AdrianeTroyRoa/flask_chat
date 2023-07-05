@@ -16,4 +16,4 @@ class Message(db.Model):
 class LoggedIn(db.Model):
     active_id = db.Column(db.String(20), db.ForeignKey('user.id'), primary_key=True)
     date_in = db.Column(db.DateTime(timezone=True), default=func.now(), primary_key=True)
-    date = db.Column(db.DateTime(timezone=True), default=None, primary_key=True)
+    date_out = db.Column(db.DateTime(timezone=True), nullable=True)

@@ -1,10 +1,10 @@
-import re
+import re, time
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from . import db
-from .models import User
+from . import db, views
+from .events import socketio
+from .models import User, LoggedIn
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
-from . import views
 
 auth = Blueprint('auth', __name__)
 
@@ -30,6 +30,27 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
+    print("we reached mars!")
+
+    username = request.args['username']
+    the_user = LoggedIn.query.filter(LoggedIn.active_id==username).filter(LoggedIn.date_out.is_(None)).order_by(LoggedIn.date_in.desc()).first()
+
+    
+    datetime = time.strftime('%Y-%m-%d %H:%M:%S')
+    the_user.date_out = datetime
+    db.session.commit()
+
+    active_users = LoggedIn.query.filter(LoggedIn.date_out.is_(None)).order_by(LoggedIn.date_in.desc()).all()
+    
+    iter = 0;
+    list_of_active = []
+    while(iter<len(active_users)):
+        list_of_active.append(active_users[iter].active_id)
+        iter+=1
+
+    socketio.emit("actives", list_of_active)
+    print("active user:", len(list_of_active))
+
     logout_user()
     return redirect(url_for('auth.login'))
 
