@@ -1,25 +1,26 @@
 body{
-    margin:0;
-    margin-top:30pt;
+    margin: 0;
     background-color: #eeeeee;
 }
-div.head{
-    overflow: hidden;
+header{
     position: fixed;
-    top: 0%;
+    top: 0;
     width: 100%;
+    height: 10vh;
     color: #f2f2f2;
     font-family: 'Consolas';
     text-align: center;
     background-color: #333;
+    margin: 0;
+}
+div.head {
+    margin: 0;
 }
 div.head a{
-    float: left;
-    display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+    padding: 14px 16px;
     font-size: 17px;
 }
 div.head a:hover{
@@ -27,77 +28,67 @@ div.head a:hover{
     color: black;
 }
 span.userid{
-    float: right;
-    display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    padding: 14px 16px;
 }
-div.message_container {
-    position:   fixed;
-    top:        9.8%;
-    left:       30%;
-    bottom:     10%;
-    background-color: #403637;
-    width:  70%;
-    padding-top: 3px;
+section {
+    display: flex;
+    position: fixed;
+    height: 90vh;
+    bottom: 0;
+}
+div.online_users{
+    background-color: #a6a6a6;
+    padding-left: 10px;
+    width: 60%;
+    height: 100%;
+}
+div.online_users h2{
+    font-family: "Arial";
+    font-size: 30pt;
+    font-weight: 700;
+}
+div.chat_container{
+    display: flex;
+    align-content: stretch;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 3px;
 }
 div.messages{
-    display:    block;
-    position:   fixed;
-    left:       30%;
-    bottom:     10%;
-    max-height: 80%;
-    width:      70%;
+    background-color: #403637;
     overflow:   auto;
     padding-bottom: 3px;
+    max-height: 89%;
+}
+span.the_beginning{
+    color: #6e6e6e;
 }
 div.input-bar{
-    position: fixed;
-    bottom: 0%;
-    left: 30%;
-    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #a6a6a6;
-    padding: 2em;
+    height: 10%;
+    margin-top: 3px;
 }
 #messageInput{
     margin: auto;
     display: block;
-    margin-bottom: 3px;
     border: 1px transparent;
     border-radius: 30px;
     padding: 15px;
     font-size: 16pt;
 }
 #chat-msg li{
-    display: inline-block;
     clear: both;
     border: 1px solid black;
-    margin-top: 3px;
-    margin-down: 3px;
-    margin-left: 7px;
-    margin-right: 7px;
     padding: 10px;
     word-wrap: break-word;
     max-width: 65%;
-}
-.online_users{
-    position:   fixed;
-    top:        9.8%;
-    right:      70.3%;
-    bottom:     0%;
-    background-color: #a6a6a6;
-    padding-left: 30px;
-    width: 28.3%;
-}
-
-.online_users h2{
-    font-family: "Arial";
-    font-size: 30pt;
-    font-weight: 700;
+    margin-left: 3px;
+    margin-right: 3px;
 }

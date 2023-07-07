@@ -13,23 +13,28 @@
     ></script>
   </head>
   <body>
-        <div class="head">
+        <header>
             <h1>Bangan Chat</h1>
-            <a href="{{ url_for('auth.logout', username=user.id, **request.args) }}">LogOut</a>
-            <span class="userid" id="user">USER: {{user.id}}</span>
-        </div>
-        <div class="online_users">
-            <h2>Active Users</h2>
-            <ul style="list-style-type:none; padding: 0;" id="user_list"></ul>
-        </div>
-        <div class="message_container">
-            <div class="messages" id="container">
-                <ul style="list-style-type:none; padding: 0;" id="chat-msg"></ul>
+            <div class="head">
+                <a href="{{ url_for('auth.logout', username=user.id) }}">LogOut</a>
+                <span class="userid" id="user">USER: {{user.id}}</span>
             </div>
-        </div>
-            <div class="input-bar">
-                <input size="50" type="text" id="messageInput" placeholder="Aa" autofocus>
+        </header>
+        <section>
+            <div class="online_users">
+                <h2>Active Users</h2>
+                <ul style="list-style-type:none; padding: 0;" id="user_list"></ul>
             </div>
+            <div class="chat_container">
+                <div class="messages" id="container">
+                    <span class="the_beginning">The beginning of everything</span>
+                    <ul style="list-style-type:none; padding: 0;" id="chat-msg"></ul>
+                </div>
+                <div class="input-bar">
+                    <input size="50" type="text" id="messageInput" placeholder="Aa" autofocus>
+                </div>
+            </div>
+        </section>
 
     <script>
 
