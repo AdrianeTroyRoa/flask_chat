@@ -42,7 +42,8 @@ section {
 }
 div.online_users{
     background-color: #a6a6a6;
-    padding-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     width: 60%;
     height: 100%;
 }
@@ -50,6 +51,11 @@ div.online_users h2{
     font-family: "Arial";
     font-size: 30pt;
     font-weight: 700;
+}
+div.online_users ul{
+    text-align: center;
+    font-family: cursive;
+    font-size: 14pt; 
 }
 div.chat_container{
     display: flex;
@@ -63,6 +69,7 @@ div.messages{
     overflow:   auto;
     padding-bottom: 3px;
     max-height: 89%;
+    scroll-behavior: smooth;
 }
 span.the_beginning{
     color: #6e6e6e;
