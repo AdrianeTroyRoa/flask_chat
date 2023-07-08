@@ -68,7 +68,7 @@ div.messages{
     background-color: #403637;
     overflow:   auto;
     padding-bottom: 3px;
-    max-height: 89%;
+    height: 89%;
     scroll-behavior: smooth;
 }
 span.the_beginning{

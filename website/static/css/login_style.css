@@ -1,3 +1,6 @@
+body{
+    margin: 0;
+}
 input.login {
     text-align: center;
     border: 0px transparent;
@@ -82,7 +85,6 @@ div.error{
     color: #333333;
     background-color: rgba(234,0,0,0.3);
     padding: 10px;
-    margin-left: 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -91,7 +93,6 @@ div.success{
     color: #333333;
     background-color: rgba(0,234,0,0.3);
     padding: 10px;
-    margin-left: 0;
     position: fixed;
     top: 0;
     width: 100%;
